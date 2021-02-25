@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Route, Switch, useHistory, useLocation, Redirect } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
-import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import EditProfilePopup from './EditProfilePopup.js';
@@ -27,7 +26,7 @@ function App() {
   // Устанавливаем стэйты
   const [currentUser, setCurrentUser] = React.useState({});
   const [userEmail, setUserEmail] = useState('');
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currURL, setCurrURL] = useState('');
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -135,15 +134,13 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  
-
   function handleCardClick(card) {
     setSelectedCard(card);
   }
 
   function handleInfoTooltip(message, status) {
     setIsInfoTooltip({
-      isOpen: true,
+      isOpen: false,
       message: message,
       status: status
     });
@@ -166,17 +163,17 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
 
-    if (jwt) {
-      auth.getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setUserEmail(res.data.email);
-            history.push('/');
-          }
-        });
-    }
+  if (jwt) {
+  auth.getContent(jwt)
+  .then((res) => {
+  if (res) {
+  setLoggedIn(true);
+  setUserEmail(res.data.email);
+  history.push('/');
+     }
+   });
   }
+ }
 
   function signOut() {
     localStorage.removeItem('jwt');
@@ -191,7 +188,7 @@ function App() {
   useEffect(() => {
     tokenCheck();
     setCurrURL(location.pathname);
-  }, [location.pathname, currURL]);
+  }, [location.pathname, currURL, tokenCheck]);
 
   // Объект с состояниями попапов
   const popupStateContext = {
@@ -218,21 +215,21 @@ function App() {
               onCardClick={handleCardClick} // Обработчик клика по карточке
               cards={cards}
               onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+
             />
             } />
-            <Route path="./sign-up">
+            <Route path="/sign-up">
               <Register changeCurrUrl={changeCurrUrl} onInfoTooltip={handleInfoTooltip} />
             </Route>
-            <Route path="./sign-in">
+            <Route path="/sign-in">
               <Login handleLogin={handleLogin} />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="./sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
           </Switch>
-          
-      
+
+
           {/*Создаем попап для аватара и передаем пропсы и обработчики*/}
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}

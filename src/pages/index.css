@@ -68,3 +68,17 @@
 @import url('../blocks/block-action/_active/block-action_active.css');
 @import url('../blocks/body/body.css');
 
+
+@import url('../blocks/form-auth/form-auth.css');
+@import url('../blocks/form-auth/__btn/form-auth__btn.css');
+@import url('../blocks/form-auth/__field/form-auth__field.css');
+@import url('../blocks/form-auth/__input/form-auth__input.css');
+@import url('../blocks/form-auth/__link/form-auth__link.css');
+@import url('../blocks/form-auth/__text/form-auth__text.css');
+@import url('../blocks/form-auth/__title/form-auth__title.css');
+
+
+@import url('../blocks/popup/__logo/popup__logo.css');
+@import url('../blocks/popup/__message/popup__message.css');
+@import url('../blocks/popup/__btn-close/popup__btn-close.css');
+
