@@ -218,7 +218,7 @@ function App() {
               onCardClick={handleCardClick} // Обработчик клика по карточке
               cards={cards}
               onCardLike={handleCardLike}
-              
+              onCardDelete={handleCardDelete}
             />
             } />
             <Route path="./sign-up">
