@@ -3,6 +3,8 @@
 @import url('../blocks/page/page.css');
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
+@import url('../blocks/header/__email/header__email.css');
+@import url('../blocks/header/__link/header__link.css');
 @import url('../blocks/content/content.css');
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__wrapper/profile__wrapper.css');
@@ -23,7 +25,13 @@
 @import url("../blocks/grid-card/__wrapper/grid-card__wrapper.css");
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
-@import url('../blocks/form/form.css');
+@import url('../blocks/form/__sign/form__sign.css');
+@import url('../blocks/form/__btn/form__btn.css');
+@import url('../blocks/form/__input/form__input.css');
+@import url('../blocks/form/__link/form__link.css');
+@import url('../blocks/form/__sign/form__sign.css');
+@import url('../blocks/form/__text/form__text.css');
+@import url('../blocks/form/__title/_auth/form__title_auth.css');
 @import url('../blocks/form/__add-img/form__add-img.css');
 @import url('../blocks/form/__contact-info/form__contact-info.css');
 @import url('../blocks/form/__contact-name/form__contact-name.css');

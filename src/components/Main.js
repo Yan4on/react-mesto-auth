@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useContext, memo } from 'react';
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main({
+const Main = memo(({
   onEditAvatar,
   onEditProfile,
   onAddPlace,
   cards,
   onCardClick,
   onCardLike,
-  onCardDelete }) {
+  onCardDelete
+}) => {
 
     
     //Подписываемся на контекст
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext); //Подписываемся на контекст
 
 
   return (
@@ -55,6 +56,6 @@ function Main({
       </section>
     </main>
   );
-}
+})
 
 export default Main;
