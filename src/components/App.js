@@ -17,6 +17,7 @@ import { api } from '../utils/api.js';
 import * as auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { StatePopup } from '../contexts/StatePopup';
+import { validators } from '../utils/validators';
 
 
 
@@ -140,7 +141,7 @@ function App() {
 
   function handleInfoTooltip(message, status) {
     setIsInfoTooltip({
-      isOpen: false,
+      isOpen: true,
       message: message,
       status: status
     });

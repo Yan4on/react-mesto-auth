@@ -16,7 +16,7 @@ const FormSign = memo(({ name, title, onSubmit, onChange, isInvalid,  btnName, c
 
             </label>
             <button type="submit" className={`form-auth__btn ${isInvalid ? 'form__btn_disabled' : ''}`} disabled={isInvalid}>
-                
+                {btnName}
             </button>
             { name === "sign-up" && <p className="form-auth__text">Уже зарегистрированы? <Link to="/sign-in" onClick={() => changeCurrUrl('/sign-in')} className="form-auth__link" >Войти</Link></p>}
         </form>
