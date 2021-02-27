@@ -1,17 +1,13 @@
 import React, { useState, memo } from 'react';
-import { useHistory } from 'react-router-dom';
 import FormSign from './FormSign';
-import * as auth from '../utils/auth';
 
-const Login = memo(({ handleLogin }) => {
+const Login = memo(({ authLogin }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const history = useHistory();
     // Обработчик ввода данных в поля
     function handleChange(e) {
-
         const { name, value } = e.target;
 
         //обновляем значение поля после каждого ввода символа
@@ -27,16 +23,11 @@ const Login = memo(({ handleLogin }) => {
             return;
         }
 
-        auth.authorize(email, password)
-            .then((data) => {
-                if (data) {
-                    setEmail('');
-                    setPassword('');
-                    handleLogin(email);
-                    history.push('/');
-                }
-            })
-            .catch(err => console.log(err));
+        authLogin(email, password)
+            .then(() => {
+                setEmail('');
+                setPassword('');
+            });
     }
 
     return (

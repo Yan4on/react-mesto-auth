@@ -2,7 +2,7 @@ export function InputEditAvatar({ onChange, avatarRef }) {
     return (
         <>
               <input type="url" id="link-input" name="link" className="form__input form__input_link"
-                placeholder="Ссылка на изображение" required ref={avatarRef} onChange={onChange} />
+                placeholder="Ссылка на изображение" required ref={avatarRef} onChange={onChange} value={avatarRef}/>
               <span className="popup__input-error" id="link-input-error"></span>
             </>
     );
@@ -21,14 +21,14 @@ export function InputEditProfile({ inputName, inputAbout, onChange }) {
     );
 }
 
-export function InputAddCard({ onChange }) {
+export function InputAddCard({ onChange, place, link }) {
     return (
         <>
                 <input type="text" id="title-input" name="name" className="form__input form__item-name"
-                  placeholder="Название" minLength="1" maxLength="30"required onChange={onChange} />
+                  placeholder="Название" minLength="1" maxLength="30"required onChange={onChange} value={place}/>
                 <span className="popup__input-error" id="title-input-error"></span>
                 <input type="url" id="link-input" name="link" className="form__input form__link-img"
-                  placeholder="Ссылка на картинку" required onChange={onChange} />
+                  placeholder="Ссылка на картинку" required onChange={onChange} value={link}/>
                 <span className="popup__input-error" id="link-input-error"></span>
               </>
     );

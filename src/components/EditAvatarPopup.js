@@ -13,10 +13,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         });
     }
 
-    function handleChange(e) {
-        //обновляем значение поля после каждого ввода символа
-        avatarRef.current.value = e.target.value;
-    }
+  
 
     return (
       <PopupWithForm
@@ -29,7 +26,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       >
           <InputEditAvatar
               avatarRef={avatarRef}
-              onChange={handleChange}
+              
           />
       </PopupWithForm>
   );

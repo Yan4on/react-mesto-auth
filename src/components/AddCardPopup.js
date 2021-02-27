@@ -16,6 +16,7 @@ function AddCardPopup({ isOpen, onClose, onAddPlace }) {
         });
     }
 
+    // Обработчик ввода данных в поля
     function handleChange(e) {
         // если аттрибут name имеет значение name, то устанавливаем setPlace
         // иначе setLink

@@ -17,7 +17,6 @@ import { api } from '../utils/api.js';
 import * as auth from '../utils/auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { StatePopup } from '../contexts/StatePopup';
-import { validators } from '../utils/validators';
 
 
 
@@ -176,6 +175,17 @@ function App() {
   }
  }
 
+ function handleAuthLogin(email, password) {
+  return auth.authorize(email, password)
+    .then((data) => {
+      if (data) {
+        handleLogin(email);
+        history.push('/');
+      }
+    })
+    .catch(err => console.log(err));
+}
+
   function signOut() {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
@@ -189,7 +199,11 @@ function App() {
   useEffect(() => {
     tokenCheck();
     setCurrURL(location.pathname);
-  }, [location.pathname, currURL, tokenCheck]);
+  }, [location.pathname, currURL]);
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   // Объект с состояниями попапов
   const popupStateContext = {
@@ -216,14 +230,17 @@ function App() {
               onCardClick={handleCardClick} // Обработчик клика по карточке
               cards={cards}
               onCardLike={handleCardLike}
-
+              onCardDelete={handleCardDelete}
             />
             } />
             <Route path="/sign-up">
               <Register changeCurrUrl={changeCurrUrl} onInfoTooltip={handleInfoTooltip} />
             </Route>
             <Route path="/sign-in">
-              <Login handleLogin={handleLogin} />
+              <Login 
+              handleLogin={handleLogin} 
+              authLogin={handleAuthLogin}
+              />
             </Route>
             <Route>
               {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
