@@ -1,9 +1,8 @@
 import React, { useState, memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import FormSign from './FormSign';
-import * as auth from '../utils/auth';
 
-const Register = memo(({ changeCurrUrl, onInfoTooltip }) => {
+const Register = memo(({ changeCurrUrl, authRegister, inputPass }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,21 +21,7 @@ const Register = memo(({ changeCurrUrl, onInfoTooltip }) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        auth.register(email, password)
-            .then((res) => {
-                if (res.status === 201) {
-                    onInfoTooltip('Вы успешно зарегистрировались!', 'ok')
-                    history.push('/sign-in');
-                    changeCurrUrl('/sign-in');
-                    return;
-                }
-                onInfoTooltip('Что-то пошло не так! Попробуйте ещё раз.', 'error')
-                return res;
-            })
-            .catch((err) => {
-                onInfoTooltip('Что-то пошло не так! Попробуйте ещё раз.', 'error');
-                console.log(err)
-            });
+        authRegister(email, password);
     }
 
     return (
@@ -47,6 +32,7 @@ const Register = memo(({ changeCurrUrl, onInfoTooltip }) => {
             onChange={handleChange}
             onSubmit={handleSubmit}
             changeCurrUrl={changeCurrUrl}
+            inputPass={inputPass }
         />
     );
 });

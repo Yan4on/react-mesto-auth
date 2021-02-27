@@ -1,7 +1,7 @@
 import React, { useState, memo } from 'react';
 import FormSign from './FormSign';
 
-const Login = memo(({ authLogin }) => {
+const Login = memo(({ authLogin, inputPass  }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,6 +37,7 @@ const Login = memo(({ authLogin }) => {
             btnName="Войти"
             onChange={handleChange}
             onSubmit={handleSubmit}
+            inputPass={inputPass}
         />
     );
 });

@@ -11,9 +11,8 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         onUpdateAvatar({
             link: avatarRef.current.value /* Значение инпута, полученное с помощью рефа */
         });
+        e.target.reset();
     }
-
-  
 
     return (
       <PopupWithForm
@@ -26,7 +25,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       >
           <InputEditAvatar
               avatarRef={avatarRef}
-              
           />
       </PopupWithForm>
   );

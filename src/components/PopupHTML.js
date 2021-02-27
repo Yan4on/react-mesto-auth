@@ -2,7 +2,7 @@ export function InputEditAvatar({ onChange, avatarRef }) {
     return (
         <>
               <input type="url" id="link-input" name="link" className="form__input form__input_link"
-                placeholder="Ссылка на изображение" required ref={avatarRef} onChange={onChange} value={avatarRef}/>
+                placeholder="Ссылка на изображение" required ref={avatarRef} onChange={onChange} />
               <span className="popup__input-error" id="link-input-error"></span>
             </>
     );

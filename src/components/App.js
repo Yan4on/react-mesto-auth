@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Route, Switch, useHistory, useLocation, Redirect } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
+import Footer from './Footer';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import EditProfilePopup from './EditProfilePopup.js';
@@ -138,7 +139,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  function handleInfoTooltip(message, status) {
+  function onInfoTooltip(message, status) {
     setIsInfoTooltip({
       isOpen: true,
       message: message,
@@ -174,6 +175,24 @@ function App() {
    });
   }
  }
+
+ function handleAuthRegister(email, password) {
+ auth.register(email, password)
+     .then((res) => {
+         if (res.status === 201) {
+             onInfoTooltip('Вы успешно зарегистрировались!', 'ok')
+             history.push('/sign-in');
+             changeCurrUrl('/sign-in');
+             return;
+         }
+         onInfoTooltip('Что-то пошло не так! Попробуйте ещё раз.', 'error')
+         return res;
+     })
+     .catch((err) => {
+         onInfoTooltip('Что-то пошло не так! Попробуйте ещё раз.', 'error');
+         console.log(err)
+     });
+    }
 
  function handleAuthLogin(email, password) {
   return auth.authorize(email, password)
@@ -234,7 +253,10 @@ function App() {
             />
             } />
             <Route path="/sign-up">
-              <Register changeCurrUrl={changeCurrUrl} onInfoTooltip={handleInfoTooltip} />
+              <Register 
+              changeCurrUrl={changeCurrUrl}
+              authRegister={handleAuthRegister}
+               />
             </Route>
             <Route path="/sign-in">
               <Login 
@@ -243,10 +265,11 @@ function App() {
               />
             </Route>
             <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in"  />}
             </Route>
           </Switch>
 
+          
 
           {/*Создаем попап для аватара и передаем пропсы и обработчики*/}
           <EditAvatarPopup
@@ -290,6 +313,8 @@ function App() {
             isOpen={isInfoTooltip}
             onClose={closeAllPopups}
           />}
+
+          { loggedIn && <Footer/>}
 
         </div>
       </CurrentUserContext.Provider>
