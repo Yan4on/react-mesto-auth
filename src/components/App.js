@@ -216,7 +216,6 @@ function App() {
   }
 
   useEffect(() => {
-    tokenCheck();
     setCurrURL(location.pathname);
   }, [location.pathname, currURL]);
 
